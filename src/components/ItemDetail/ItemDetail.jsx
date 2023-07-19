@@ -11,7 +11,7 @@ import { CartContext } from '../../context/CartContext';
 
 export default function CardDetail( { name, id, img, description, stock, price } ) {
 
-  const [cuantity, setAddCuantity] = useState(0);
+  const [quantity, setAddCuantity] = useState(0);
   const {addProduct} = useContext(CartContext);
 
 
@@ -25,10 +25,10 @@ CardDetail.propTypes = {
     price: PropTypes.number.isRequired,
 };
 
-    const handleCuantity = (cuantity) => {
-      setAddCuantity(cuantity);
+    const handleQuantity = (quantity) => {
+      setAddCuantity(quantity);
     const item = {id, name, price};
-    addProduct(item, cuantity)
+    addProduct(item, quantity)
 }
   return (
     <Card sx={{  
@@ -62,7 +62,7 @@ CardDetail.propTypes = {
         </Typography>
       </CardContent>
       <CardActions>
-      { cuantity  > 0 ? (<Link to="/cart"> finish your </Link>) : <Counter stock={stock} initial={1} addFunction={handleCuantity} ></Counter>} 
+      { quantity  > 0 ? (<Link to="/cart"> finish your </Link>) : <Counter stock={stock} initial={1} addFunction={handleQuantity} ></Counter>} 
       </CardActions>
     </Card>
   );
