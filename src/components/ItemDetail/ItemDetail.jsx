@@ -5,26 +5,30 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Counter from '../Counter/Counter';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { CartContext } from '../../context/CartContext';
 
-export default function CardDetail( { name, img, category, description, stock } ) {
+export default function CardDetail( { name, id, img, description, stock, price } ) {
 
-  const [count, setAddCount] = useState();
+  const [cuantity, setAddCuantity] = useState(0);
+  const {addProduct} = useContext(CartContext);
+
 
 
 CardDetail.propTypes = {
     name: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     stock: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
 };
 
-  const handleCount = (count) => {
-    setAddCount(count);
-    console.log("Products to add: " + count);
+    const handleCuantity = (cuantity) => {
+      setAddCuantity(cuantity);
+    const item = {id, name, price};
+    addProduct(item, cuantity)
 }
   return (
     <Card sx={{  
@@ -50,15 +54,15 @@ CardDetail.propTypes = {
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {category}
-        </Typography>
-         <Typography variant="body2" color="text.secondary">
+         <Typography variant="body1" color="text.secondary">
           {description}
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          ${price}
         </Typography>
       </CardContent>
       <CardActions>
-      { count  > 0 ? (<Link to="/cart"> finish your </Link>) : <Counter stock={stock} initial={1} add={handleCount} ></Counter>} 
+      { cuantity  > 0 ? (<Link to="/cart"> finish your </Link>) : <Counter stock={stock} initial={1} addFunction={handleCuantity} ></Counter>} 
       </CardActions>
     </Card>
   );
