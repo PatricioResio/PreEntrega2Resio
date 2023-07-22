@@ -1,4 +1,4 @@
-import React from 'react'
+
 import App from './App.jsx'
 
 import { createRoot } from 'react-dom/client';
@@ -14,11 +14,11 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
-  <React.StrictMode>
+
     <BrowserRouter>
       <ThemeProvider theme={Theme}>
         <App sx={{ margin:0, padding: 0,}}/>
       </ThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+
 )

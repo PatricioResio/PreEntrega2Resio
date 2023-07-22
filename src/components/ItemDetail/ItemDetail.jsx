@@ -8,10 +8,11 @@ import Counter from '../Counter/Counter';
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CartContext } from '../../context/CartContext';
+import { Button } from '@mui/material';
 
 export default function CardDetail( { name, id, img, description, stock, price } ) {
 
-  const [quantity, setAddCuantity] = useState(0);
+  const [addQuantity, setAddCuantity] = useState(0);
   const {addProduct} = useContext(CartContext);
 
 
@@ -27,9 +28,10 @@ CardDetail.propTypes = {
 
     const handleQuantity = (quantity) => {
       setAddCuantity(quantity);
-    const item = {id, name, price};
+    const item = {id, name, price, img};
     addProduct(item, quantity)
 }
+
   return (
     <Card sx={{  
                 width: "40vh",
@@ -62,8 +64,14 @@ CardDetail.propTypes = {
         </Typography>
       </CardContent>
       <CardActions>
-      { quantity  > 0 ? (<Link to="/cart"> finish your </Link>) : <Counter stock={stock} initial={1} addFunction={handleQuantity} ></Counter>} 
+          
+          {
+              addQuantity > 0 ?
+           (<div><Button variant="contained" component={Link} to="/cart"> finish your shop</Button> <Button variant="contained" component={Link} to="/"> Pick more products</Button></div>)
+           :
+           (<Counter stock={stock} initial={1} addFunction={handleQuantity} ></Counter>)
+          }   
       </CardActions>
     </Card>
   );
-}
+} 

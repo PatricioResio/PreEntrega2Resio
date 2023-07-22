@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 
 export default function CardProduct( { prod } ) {
-
    CardProduct.propTypes = {
     prod: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -36,7 +35,7 @@ export default function CardProduct( { prod } ) {
       <CardMedia
         sx={{ height: "10rem" }}
         image={prod.img}
-        src={!prod ?  '' : prod.img}necesito
+        src={!prod ?  '' : prod.img}
       />
       <CardContent sx={{display:"flex", flexDirection:"column" }}>
         <Typography gutterBottom variant="h5" component="div">
@@ -48,6 +47,7 @@ export default function CardProduct( { prod } ) {
       </CardContent>
       <CardActions>
         <Button component={Link} to={`/item/${prod.id}`}>See more</Button>
+      
       </CardActions>
     </Card>
   );

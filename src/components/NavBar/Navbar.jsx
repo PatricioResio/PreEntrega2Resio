@@ -7,9 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget'
 import AdbIcon from '@mui/icons-material/Adb';
@@ -33,48 +31,26 @@ const pages = [
     path: '/category/hoodie'
   }
 ];
-const settings = [
-  {
-    name: 'Perfil',
-    path: '/perfil'
-  },
-  {
-    name: 'No sabemos',
-    path: '/nosabemos'
-  },
-  { name: 'Tampoco',
-  path: '/tampoco'
-  },
-  {
-  name: 'Cerrar sesión',
-  path: '/logout'
-  }
-];
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+
 
   return (
     <AppBar position="static" sx={{justifyContent: 'space-between', minWidth: '110vh', backgroundColor:"#3F7D92"}} >
       <Container  sx={{ minWidth: '110vh', backgroundColor:"#3F7D92"}}>
         <Toolbar disableGutters sx={{  textAling: 'justify'}}>
-        {/*   <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 , marginRight:'3rem'}} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -163,36 +139,6 @@ function ResponsiveAppBar() {
                 {page.name}
               </Button>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
           <Box>
                 <MenuItem>

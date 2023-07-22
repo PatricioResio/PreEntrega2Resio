@@ -8,7 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-export default function CartItem ({ product, cuantity }) {
+export default function CartItem ({ product, quantity }) {
     const { deleteProduct } = useContext(CartContext);
 
     return (
@@ -29,22 +29,22 @@ export default function CartItem ({ product, cuantity }) {
               }}>
       <CardMedia
         sx={{ height: "10rem" }}
-        image={product.img}
-        src={!product ?  '' : product.img}necesito
+        image={product.item.img}
+        src={!product ?  '' : product.item.img}
       />
       <CardContent sx={{display:"flex", flexDirection:"column" }}>
         <Typography gutterBottom variant="h5" component="div">
-          {product.name}
+          {product.item.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {cuantity}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        {product.price}
+        ${product.item.price}
       </Typography>
+        <Typography variant="body2" color="text.secondary">
+          quantity {product.quantity}
+        </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={deleteProduct(product.id)}>Delete</Button>
+        <Button variant="danger" onClick={() => deleteProduct(product.item.id)}>Delete</Button>
       </CardActions>
     </Card>
 
